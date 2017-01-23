@@ -1,0 +1,109 @@
+var ws = {
+
+    init : function (params) {
+        ws.params = params;
+        if(!this.getUtmz()){
+            return;
+        }
+        document.getElementById(ws.params.cp).innerHTML = this.getPhone();
+        setTimeout(function(){
+            //ws.setActivityKey();
+            ws.sendAdditionalData();
+        },1000);
+
+    },
+
+    getPhone : function(){
+        phones_arr
+                = {
+                    {% for item in phones_list %}
+                    '{{ item.getUtm }}':'{{ item.getPhone().getPhoneNum() }}',
+                    {% endfor %}
+                }
+
+        return phones_arr[this.getUtmz()];
+    },
+
+    getCookie: function (name) {
+      var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+
+      return matches ? decodeURIComponent(matches[1]) : undefined
+
+    },
+
+
+    getUtmz :  function() {
+        var values = {};
+        //var cookie = this.getCookie("__utmz");
+        cookie = "129579790.1480267311.1.1.utmcsr=yandex|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)";
+
+        if (cookie) {
+            var z = cookie.split('.');
+            if (z.length >= 4) {
+                var y = z[4].split('|');
+                for (i = 0; i < y.length; i++) {
+                    var pair = y[i].split("=");
+                    values[pair[0]] = pair[1];
+                }
+            }
+        }
+        if(values['utmcsr'] == undefined){return false;}
+        return values['utmcsr']+":"+values['utmcmd'];
+    }  ,
+
+    setCookie: function setCookie (name, value, expires, path, domain, secure) {
+        document.cookie = name + "=" + escape(value) +
+                ((expires) ? "; expires=" + expires : "") +
+                ((path) ? "; path=" + path : "") +
+                ((domain) ? "; domain=" + domain : "") +
+                ((secure) ? "; secure" : "");
+    },
+
+
+    setActivityKey: function(key){
+        var date = new Date();
+        date.setTime(date.getTime() + (60 * 60 * 1000));
+        ws.setCookie('ws_activity_key', key, date, '/');
+    },
+
+
+    getActivityKey: function(){
+        ativityKeyStr = ws.getCookie('ws_activity_key');
+
+        if(ativityKeyStr!=='undefined'){
+            return ativityKeyStr;
+        }
+        return false;
+    },
+
+    sendAdditionalData: function () {
+        referer_url = 'no_referer';
+        if(document.referrer.length>0 || document.referrer!=='undefined'){
+            referer_url = document.referrer;
+        }
+        var url = 'http://test2.loc/app_dev.php/ws/send-data?';
+        url +="cookies="+encodeURIComponent(document.cookie);
+        url +="&referer_url="+encodeURIComponent(referer_url);
+        url +="&current_url="+encodeURIComponent(window.location.href);
+        url +="&api_key="+encodeURIComponent(ws.params.key);
+
+        if(ws.getActivityKey()){
+           // alert(ws.getActivityKey());
+            url +="&user_activity_key="+ws.getActivityKey();
+        }
+        var html = "<sc"+"ript src='"+url+"'></sc"+"ript>";
+        var element = document.getElementById('body');
+       // element.innerHTML=element.innerHTML+html;
+        code = "";
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = url;
+            script.appendChild(document.createTextNode(code));
+            document.head.appendChild(script);
+
+    }
+
+
+
+
+}

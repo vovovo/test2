@@ -1,0 +1,26 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    admin.user:
+        class: UserBundle\Admin\User
+        arguments: [~, UserBundle\Entity\User, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: User }
+    admin.phones:
+        class: WS\CallTrackingBundle\Admin\Phones
+        arguments: [~, WS\CallTrackingBundle\Entity\Phones, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Phones }
+    admin.utm:
+        class: WS\CallTrackingBundle\Admin\Utm
+        arguments: [~, WS\CallTrackingBundle\Entity\Utm, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Utm }
+    admin.phone_to_otm_to_user:
+        class: WS\CallTrackingBundle\Admin\PhoneToUtmToUser
+        arguments: [~, WS\CallTrackingBundle\Entity\PhoneToUtmToUser, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: PhoneToUtmToUser }

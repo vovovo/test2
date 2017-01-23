@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Studio7 - Digital Agency</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css"  href="/assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/assets/front/fonts/font-awesome/css/font-awesome.css">
+
+    <!-- Stylesheet
+        ================================================== -->
+    <link rel="stylesheet" type="text/css"  href="/assets/front/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/front/css/prettyPhoto.css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/assets/front/js/modernizr.custom.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script type="text/javascript" src="/assets/front/js/jquery.1.11.1.js"></script>
+    <script type="text/javascript" src="/assets/front/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/assets/front/js/SmoothScroll.js"></script>
+    <script type="text/javascript" src="/assets/front/js/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript" src="/assets/front/js/jquery.isotope.js"></script>
+    <script type="text/javascript" src="/assets/front/js/jqBootstrapValidation.js"></script>
+    <script type="text/javascript" src="/assets/front/js/contact_me.js"></script>
+    <script type="text/javascript" src="/assets/front/js/main.js"></script>
+    <![endif]-->
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<!-- Navigation -->
+<nav id="menu" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <a class="navbar-brand page-scroll" href="#page-top"><i class="fa fa-moon-o fa-rotate-90"></i> Studio7</a>
+            <span id="phone">123</span>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ root_dir }}/#page-top" class="page-scroll">Home</a></li>
+                <li><a href="{{ root_dir }}/personal" class="page-scroll">Control panel</a></li>
+                <li><a href="{{ root_dir }}/register" class="page-scroll">Registration</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+{% block body %}
+{% endblock %}
+<div id="footer">
+    <div class="container text-center">
+        <div class="fnav">
+            <p>Copyright &copy; 2016 Studio7. Designed by <a href="http://www.templatewire.com" rel="nofollow">TemplateWire</a></p>
+        </div>
+    </div>
+</div>
+
+<script src="http://test2.loc/app_dev.php/ws/get_tracking_js?apiKey=123123123"></script>
+<script>
+    ws.init({
+        cp : 'phone',
+        key: '123123123'
+    });
+</script>
+</body>
+</html>
